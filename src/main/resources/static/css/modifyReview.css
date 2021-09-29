@@ -1,0 +1,375 @@
+/* 폰트 */
+@font-face {
+  src:url("../fonts/Cafe24Ssurround.ttf");
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mySlides img{
+	
+width: 500px;
+height: 394px;
+object-fit: cover;
+text-align:center;
+margin-left:28px
+}
+
+@keyframes filling {
+    from{
+      background-position: center 25%;
+    }
+    to {
+      background-position: center 50%;
+    }
+  }
+/* 첫상단 글 */
+.container-text {
+  margin-left: 7%;
+    text-align: center;
+    position: relative;
+background-image:  url(https://static.pexels.com/photos/4827/nature-forest-trees-fog.jpeg);
+-webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
+color:  #ffff;
+padding-top: 20px;
+font-size: 50px;
+font-family: 'Cafe24Ssurround';
+animation: filling 3s ease forwards;
+}
+
+/* 사이드바 아이콘 */
+div[id="login__icon"] {
+  position: relative;
+  top: 26px;
+  left: 18px;
+  width: 160px;
+  margin: 0;
+}
+/* 사이드 메뉴바 */
+.sidebar{
+
+  list-style-type: none;
+  /* background-image:url(https://cdn.pixabay.com/photo/2016/03/17/06/49/renovation-1262389_960_720.png);
+  background-position: center;
+  background-size: 1000px 1000px; */
+  background-color:#519657;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  width: 13%;
+  top:7.9px;
+  padding: 0;
+  margin:-7px;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  font-family: 'Cafe24Ssurround';
+  font-size: 25px;
+}
+
+a{text-decoration: none;}
+
+
+/* 메뉴 */
+li a{
+  text-decoration: none;
+  display: block;
+  color: #ffff;
+  padding: 23px 19px 18px 20px;
+  font-weight: bold;
+}
+
+ul[for="sidebar_text"] {
+  position: relative;
+  top: 46px;
+  padding-left: 0rem;
+  height: 40rem;
+}
+
+/* 별부분 */
+.star-rating {
+border:none;
+display:flex;
+flex-direction: row-reverse;
+font-size:1.5em;
+justify-content:space-around;
+padding:0 .2em;
+text-align:center;
+width:5em;
+margin-left: auto;
+margin-right: auto;
+}
+.star-rating input {
+display:none;
+}
+
+.star-rating label {
+color:#ccc;
+cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+color:#fc0;
+}
+.container{
+ position: relative;
+ top:1rem;
+ left: 16rem;
+ width: 200rem;
+ padding-top:30px;
+
+}
+/* 제목 */
+label[for="subject"] {
+position: relative;
+top: -360px;
+left: 180px;
+height: 24px;
+color: #009688;
+font-family: 'Cafe24Ssurround';
+}
+input[id="a"] {
+position: relative;
+top: -360px;
+left: 200px;
+border-color: #009688;
+border-radius: 10px;
+}
+/* 내용 */
+label[for="content"] {
+position: relative;
+top: -310px;
+left: -36px;
+color: #009688;
+font-family: 'Cafe24Ssurround';
+}
+textarea[id="b"] {
+position: relative;
+top: 75px;
+left: -20px;
+border-color: #009688;
+border-radius: 10px;
+height: 25rem;
+width: 506px;
+}
+/* 별점 */
+span[for="star"] {
+position: relative;
+top: -360px;
+left: -203px;
+color: #009688;
+font-family: 'Cafe24Ssurround';
+}
+div[id="star-rating"] {
+  position: relative;  
+  top: -390px;
+  left: -935px;
+}
+
+/* 사진부분 */
+
+.container2 {
+  margin-left: 25%;
+  margin-top:-22rem;
+  left: 128rem;
+  width: 35rem;
+  height: 98rem;
+}
+
+* {box-sizing:border-box} 
+
+/* 슬라이드쇼 컨테이너의 디자인 */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}  
+
+/* 이미지를 숨기는데 사용 */
+.mySlides {
+    display: none;
+}    
+
+/* 다음, 이전 버튼 */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}  
+
+/* "다음 버튼"을 오른쪽에 위치 */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}  
+
+/* 마우스를 올리면 배경색을 변경 */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}  
+
+/* 캡션 부분 */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}  
+
+/* 숫자 부분 위에 적은 (1/3) <-- 이런거 */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}  
+
+/* 하단의 점들 */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}  
+
+.active, .dot:hover {
+  background-color: #717171;
+}  
+
+/* 페이드 효과 */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}  
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}  
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}  
+
+/* 버튼 */
+#btn_group{
+  margin-top:-73rem;
+  margin-left: 37rem;
+}
+
+/* 리뷰등록 */
+button[id="registration1"] {
+position: relative;  
+top: -100px;
+left: 236px;
+font-family: 'Cafe24Ssurround';
+width: 10%;
+cursor: pointer;
+}
+button[id="registration2"] {
+  position: relative;
+  top: -100px;
+  left: 306px;
+  font-family: 'Cafe24Ssurround';
+  width: 10%;
+  cursor: pointer;
+  }
+#btn_group button{ 
+border: 1px solid #009688;   
+background-color: rgba(0,0,0,0); 
+color: #009688; padding: 10px 100px;  
+border-radius: 10px;
+margin-left: -2rem;
+margin-bottom: -6rem;
+margin-top: 10rem;
+text-decoration: none;
+
+} 
+
+#btn_group button:hover{ 
+color:white; background-color: #bababa; }  
+
+
+.registration1 a{
+  text-decoration: none;
+  color: #009688;
+}
+.registration2 a{
+  text-decoration: none;
+  color: #009688;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.comment{
+	width:500px;
+	height:30px;
+}
+
+
+.th10{
+	text-align:center;
+}
+
+.table10{
+	width:1000px;
+}
+
+#cmdelBtn{
+	background-color:inherit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

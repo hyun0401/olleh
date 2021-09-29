@@ -1,0 +1,336 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    font-size: 62.5%;
+    height: 100%;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    html, body {
+      font-size: 50%;
+    }
+  }
+  /* 글쓰는게 공간이상으로 가도 다보임 */
+  svg {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    overflow: visible;
+  }
+  /* 마우스 포인터 */
+  .svg-icon {
+    cursor: pointer;
+  }
+  .svg-icon path {
+    stroke: rgba(255, 255, 255, 0.9);
+    fill: none;
+    stroke-width: 1;
+  }
+  
+  input, button {
+    outline: none;
+    border: none;
+  }
+  /* 배경 */
+   .thumbnail-wrappper { 
+     width: 25%; } 
+     img { max-width: 100%; height: auto;
+      animation: fadein 3s;
+      -webkit-animation: fadein 3s;
+      }
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes fadein { 
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    } 
+    
+/* 기입할 전체 박스 */
+  .main_box {
+    position: absolute;
+    top: 32%;
+    left: 45%;
+    margin-left: -15rem;
+    margin-top: -26.5rem;
+    width: 50rem;
+    height: 87rem;
+    overflow: visible;
+    
+  }
+  
+  .modify__form {
+    position: relative;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+    transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+    transform: scale(1);
+  }
+  
+  .login.inactive {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+  .login__container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .login__row {
+    right: 200%;
+    height: 5rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #8aacc8;
+  }
+  .login__icon {
+    margin-bottom: -0.1rem;
+    margin-right: 0.5rem;
+    font-weight: 600;
+  }
+  .login__icon.name path {
+    stroke-dasharray: 73.5019607544;
+    stroke-dashoffset: 73.5019607544;
+    animation: animatePath 2s 0.5s forwards;
+    
+  }
+  .login__icon.birthday path {
+    stroke-dasharray: 73.5019607544;
+    stroke-dashoffset: 73.5019607544;
+    animation: animatePath 2s 0.5s forwards;
+  }
+  .login__icon.pass path {
+    stroke-dasharray: 92.106628418;
+    stroke-dashoffset: 92.106628418;
+    animation: animatePath 2s 0.5s forwards;
+  }
+  .login__icon.e-mail path {
+    stroke-dasharray: 73.5019607544;
+    stroke-dashoffset: 73.5019607544;
+    animation: animatePath 2s 0.5s forwards;
+    
+  }
+  .login__icon.phonenumber  path {
+    stroke-dasharray: 73.5019607544;
+    stroke-dashoffset: 73.5019607544;
+    animation: animatePath 2s 0.5s forwards;
+    
+  }
+  .login__input {
+    display: inline-block;
+    width: 40rem;
+    height: 100%;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+    background: transparent;
+    color: #FDFCFD;
+  }
+  .btnSubmit_modify {
+    position: relative;
+    top:275px;
+    left: 5%;
+    width: 38%;
+    height: 3rem;
+    margin: 5rem 0 2.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    background:#8aacc8;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+  }
+  .btnSubmit_cancle {
+    position: relative;
+    top:274px;
+    left: 13%;
+    width: 42%;
+    height: 3rem;
+    margin: 5rem 0 2.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    background:#77757c;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+  }
+  /* .login__submit:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1.5rem;
+    margin-top: -1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border: 2px dotted #fff;
+    border-radius: 50%;
+    border-left: none;
+    border-bottom: none;
+    transition: opacity 0.1s 0.4s;
+    opacity: 0;
+  }
+  .login__submit.processing {
+    width: 4rem;
+    font-size: 0;
+  }
+  .login__submit.processing:after {
+    opacity: 1;
+    animation: rotate 0.5s 0.4s infinite linear;
+  }
+  .login__submit.success {
+    transition: transform 0.3s 0.1s ease-out, opacity 0.1s 0.3s, background-color 0.1s 0.3s;
+    transform: scale(30);
+    opacity: 0.9;
+  }
+  .login__submit.success:after {
+    transition: opacity 0.1s 0s;
+    opacity: 0;
+    animation: none;
+  } */
+
+  .login__signup {
+    font-size: 1.5rem;
+    color: #8aacc8;
+  }
+  .login__signup a {
+    color: #fff;
+    cursor: pointer;
+  }
+/* 중복확인버튼 */
+  .login_button1{
+    position: relative;
+    top:-4.2rem;
+		height:32px; 
+    right: -18rem;
+    background:transparent;
+    color: #8aacc8;
+    cursor: pointer;
+
+  }
+  .login__email_text{
+    position: relative;
+    top:-3rem;
+    width: 180px;
+    right: -12rem;
+
+  }
+  /* .login__email_sel{
+    position: relative;
+    top:-5.5rem;
+    width: 190px;
+		height:35px; 
+    right: -11rem;
+    background:transparent;
+    color: #8aacc8;
+    cursor: pointer;
+
+  } */
+
+  /* 전화번호 */
+  .login__station{
+    position: relative;
+    top:-4.2rem;
+    width: 65px;
+    height: 35px;
+    right: 3rem;
+    background: transparent;
+    color:#8aacc8;
+    cursor: pointer;
+  }
+  /* .login__number1{
+    position: relative;
+    top:-4.2rem;
+    width: 66px;
+    height: 35px;
+    right: 1rem;
+    background:transparent;
+    backdrop-filter: brightness(1.5);
+    outline: #77757c;
+    color:#8aacc8;
+    cursor: pointer;
+
+  }
+  .login__number2{
+    position: relative;
+    top:-4.2rem;
+    width: 66px;
+    height: 35px;
+    right: 1rem;
+    background:transparent;
+    backdrop-filter: brightness(1.5);
+    color:#8aacc8;
+    cursor: pointer;
+
+  }
+  .login__number3{
+    position: relative;
+    top:-4.2rem;
+    width: 66px;
+    height: 35px;
+    right: 0.9rem;
+    background:transparent;
+    backdrop-filter: brightness(1.5);
+    outline: #77757c;
+    color:#8aacc8;
+    cursor: pointer;
+
+  } */
+  /* 인증하기버튼 */
+  .login_button2{
+    position: relative;
+    top:-5.5rem;
+		height:32px; 
+    right: -18rem;
+    background:transparent;
+    color: #8aacc8;
+    cursor: pointer;
+
+  }
+  /* .ripple {
+    position: absolute;
+    width: 15rem;
+    height: 15rem;
+    margin-left: -7.5rem;
+    margin-top: -7.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    transform: scale(0);
+    animation: animRipple 0.4s;
+    border-radius: 50%;
+  }
+   */
+  @keyframes animRipple {
+    to {
+      transform: scale(3.5);
+      opacity: 0;
+    }
+  }
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes animatePath {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }

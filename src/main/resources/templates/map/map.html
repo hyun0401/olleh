@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/map.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="/js/common/ajaxCall.js"></script>
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=350a9e807da90462b55ca65a01a3af9d&libraries=clusterer" ></script>
+  <script src="/js/map.js" defer></script>
+</head>
+<style>
+@font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+	marker{
+		background-color : inherit;
+	}
+
+.overlaybox {position:relative;width:250px;height:180px;background-color: transparent; outline:10px solid #fe9090;padding:15px 10px;}
+.overlaybox div, ul {overflow:hidden;margin:0;padding:0;}
+.overlaybox li {list-style: none;}
+.overlaybox .boxtitle {color:#fff;font-size:16px; font-weight:bold;  font-family: 'IM_Hyemin-Bold';background-color:#fe9090; right: 120px;margin-bottom:8px;}
+.overlaybox .first {position:relative;width:247px;height:29px;background: #fe9090;margin-bottom:3px;}
+.first .text {color:#fff;font-weight:bold;}
+.first .triangle {position: absolute;width: 48px;height: 48px;top: -2px;left: 3px;background: url(test1.html) no-repeat;padding: 6px;font-size: 18px;font-family: 'IM_Hyemin-Bold';}
+.first .movietitle{ position: absolute;width: 90%;bottom: 0;padding: 7px 25px;font-size: 12px;font-family: 'IM_Hyemin-Bold';}
+.overlaybox ul {width:247px;}
+.overlaybox li {position:relative;margin-bottom:2px;background:#fe9090;padding:5px 10px;color:#fff;font-family: 'IM_Hyemin-Bold';line-height: 1;}
+.overlaybox li span {display:inline-block;}
+.overlaybox li .number {font-size:16px;font-weight:bold;}
+.overlaybox li .title {font-size:13px;}
+.overlaybox ul .arrow {position:absolute;margin-top:8px;right:25px;width:5px;height:3px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png') no-repeat;} 
+.overlaybox li .up {background-position:0 -40px;}
+.overlaybox li .down {background-position:0 -60px;}
+.overlaybox li .count {position:absolute;margin-top:5px;right:15px;font-size:10px;}
+.overlaybox li:hover {color:#fff;background:#d24545;}
+.overlaybox li:hover .up {background-position:0 0px;}
+.overlaybox li:hover .down {background-position:0 -20px;}   
+</style>
+
+<body>
+  <html>
+
+  <head>
+    <title>BLUEB</title>
+  </head>
+
+  <body>
+    <script language='javascript'>
+      //<!--
+      var cnt = new Array();
+      cnt[0] = new Array('전체');
+      cnt[1] = new Array('전체', '강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '고양시', '과천시', '계양구', '남구', '남동구', '동구', '부평구', '서구', '연수구', '중구', '강화군', '옹진군', '광명시', '구리시', '군포시', '노원구', '남양주시', '도봉구', '동대문구', '동작구', '동두천시', '부천시', '성남시', '수원시', '시흥시', '안산시', '안양시', '오산시', '의왕시', '의정부시', '평택시', '하남시', '가평군', '광주시', '김포시', '안성시', '양주군', '양평군', '여주군', '연천군', '용인시', '이천군', '파주시', '포천시', '화성시', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구');
+      cnt[2] = new Array('전체', '강릉시', '동해시', '삼척시', '속초시', '원주시', '춘천시', '태백시', '고성군', '양구군', '양양군', '영월군', '인제군', '정선군', '철원군', '평창군', '홍천군', '화천군', '황성군');
+      cnt[3] = new Array('전체', '대덕구', '대전동구', '대전서구', '대전유성구', '대전중구', '제천시', '청주시', '충주시', '괴산군', '단양군', '보은군', '영동군', '옥천군', '음성군', '진천군', '청원군');
+      cnt[4] = new Array('전체', '공주시', '보령시', '서산시', '아산시', '천안시', '금산군', '논산군', '당진군', '부여군', '서천군', '연기군', '예산군', '청양군', '태안군', '홍성군');
+      cnt[5] = new Array('전체', '군산시', '김제시', '남원시', '익산시', '전주시', '정읍시', '고창군', '무주군', '부안군', '순창군', '완주군', '임실군', '장수군', '진안군');
+      cnt[6] = new Array('전체', '광양시', '나주시', '목포시', '순천시', '여수시', '여천시', '강진군', '고흥군', '곡성군', '구례군', '담양군', '무안군', '보성군', '신안군', '여천군', '영광군', '영암군', '완도군', '장성군', '장흥군', '진도군', '함평군', '해남군', '화순군', '광산구', '광주남구', '광주동구', '광주북구', '광주서구');
+      cnt[7] = new Array('전체', '경산시', '경주시', '구미시', '김천시', '문겅시', '상주시', '안동시', '영주시', '영천시', '포항시', '고령군', '군위군', '봉화군', '성주군', '영덕군', '영양군', '예천군', '울릉군', '울진군', '의성군', '청도군', '청송군', '칠곡군', '남구', '달서구', '동구', '북구', '서구', '수성구', '중구', '달성군');
+      cnt[8] = new Array('전체', '울산남구', '울산동구', '울산북구', '울산중구', '울산울주군', '거제시', '김해시', '마산시', '밀양시', '사천시', '울산시', '진주시', '진해시', '창원시', '통영시', '거창군', '고성군', '남해군', '산청군', '양산시', '의령군', '창녕군', '하동군', '함안군', '함양군', '합천군', '강서구', '금정구', '남구', '동구', '동래구', '부산진구', '북구', '사상구', '사하구', '서구', '수영구', '연제구', '영도구', '중구', '해운대구', '기장군');
+      cnt[9] = new Array('전체', '서귀포시', '제주시', '남제주군', '북제주군');
+      function change(add) {
+        sel = document.form.county
+        /* 옵션메뉴삭제 */
+        for (i = sel.length - 1; i >= 0; i--) {
+          sel.options[i] = null
+        }
+        /* 옵션박스추가 */
+        for (i = 0; i < cnt[add].length; i++) {
+          sel.options[i] = new Option(cnt[add][i], cnt[add][i]);
+        }
+      }
+//-->
+    </script>
+    <form name=form method="post" th:action="@{/map/search}">
+
+      <p>시/도:</p> <select name='region' id="region" class="region" onchange="change(this.selectedIndex);">
+        <option value='전체' selected>전체</option>
+        <option value='경기'>경기도</option>
+        <option value='강원'>강원도</option>
+        <option value='충북'>충청북도</option>
+        <option value='충남'>충청남도</option>
+        <option value='전북'>전라북도</option>
+        <option value='전남'>전라남도</option>
+        <option value='경북'>경상북도</option>
+        <option value='경남'>경상남도</option>
+        <option value='제주'>제주도</option>
+      </select> 
+      <p>구/군:</p> <select name='county' id="county">
+        <option value='전체'>전체</option>
+      </select>
+   <button type="button" class="searchBtn" style=" margin-top:8px;"><p class="BtnP" style="margin-top: 7px;">search</p></button>
+    </form>
+    <span class="text1">검색한 마을은 이쪽에 표시됩니다. -></span>
+
+  </body>
+
+  </html>
+
+
+
+  <div id="map" style="width: 1850px; height: 900px;"></div>
+
+  <!-- 	private String id;                  //NUMBER(10), --마을번호
+	private String exprnVillageNm;      //VARCHAR2(150) not null, --마을이름
+	private String homepageUrl;         //VARCHAR2(60) not null, --홈페이지주소
+	private String rprsntvName;         //VARCHAR2(15) not null, --대표자 성명
+	private String phoneNumber;         //varchar2(20) not null, --대표자 연락처
+	private String ctprvnNm;            //VARCHAR2(60) NOT NULL, --시도명
+	private String signguNm;            //VARCHAR2(60) NOT NULL, --시군구명
+	private String exprnSe;             //VARCHAR2(30), --체험프로그램구분
+	private String exprnCn;             //VARCHAR2(240), --체험프로그램명
+	private String rdnmadr;             //VARCHAR2(300) not null,  --도로명주소
+ -->
+
+
+
+
+	
+  <input class="burger-check" type="checkbox" id="burger-check" />
+  <label class="burger-icon" for="burger-check"><span class="burger-sticks"></span></label>
+  <div class="menu">
+    <div class="villageMenu">
+      <table class="table table-sm table-hover table-bordered caption-top table-dark">
+      
+          
+        <tr class="table-primary text-success">
+          <th scope="col">마을사진</th>
+          <th scope="col">마을이름</th>
+          <th scope="col">홈페이지주소</th>
+          <th scope="col">대표자 성명</th>
+          <th scope="col">대표자연락처</th>
+          <th scope="col">시도명</th>
+          <th scope="col">시군구명</th>
+          <th scope="col">체험프로그램종류</th>
+          <th scope="col">체험프로그램이름</th>
+          <th scope="col">주소</th>
+        </tr>
+        <tbody id="villageList"></tbody>
+    
+      </table>
+    </div>
+  </div>
+
+
+
+  <script th:inline="javascript">
+
+
+
+  
+    let count = 0;  //햄버거 버튼
+
+    const $villageMenu = document.querySelector('.burger-check');
+    const $vilMenu = document.querySelector('.villageMenu');
+    
+    $villageMenu.addEventListener("click", e => {
+      count = count + 1;
+      console.log("클릭됨");
+      if (count % 2 == 1) {
+        $vilMenu.style.display = 'block';
+      } else if (count % 2 == 0) {
+        $vilMenu.style.display = 'none';
+      }
+    });
+
+    
+    
+    const $region2 = document.getElementById('region');
+    const index = [[${ region }]]; //시도정보
+    
+
+    	if($region2.value == '강원'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(37.811970, 128.154397), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+  
+    	}
+    	if($region2.value == '전체'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(37.811970, 128.154397), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '경기'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(37.418335, 127.507778), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '전남'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(34.871367, 126.927050), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '전북'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(35.729629, 127.138641), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '경남'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(35.451441, 128.330502), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '경북'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(36.296508, 128.855975), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '충남'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(36.652909, 126.793711), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '충북'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(36.772617, 127.843185), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+    	if($region2.value == '제주'){
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+      center: new kakao.maps.LatLng(33.495492, 126.534547), // 지도의 중심좌표 
+      
+      level: 8 // 지도의 확대 레벨 
+    });
+    	}
+
+    // 마커를 표시할 위치와 title 객체 배열입니다 
+    const data = [[${ mList }]];  //marker정보
+
+    
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+        minLevel: 10, // 클러스터 할 최소 지도 레벨 
+      });
+    
+    let positions = [];
+    for (i = 0; i < data.length; i++) {
+      let Latitude = data[i].villageLatitude;
+      let Longitude = data[i].villageLongitude;
+      let exprnVillageNm = data[i].exprnVillageNm; //체험마을이름
+      let exprnSe = data[i].exprnSe; //체험프로그램 종류
+      let exprnCn = data[i].exprnCn; //체험프로그램 이름
+      let rdnmadr = data[i].rdnmadr; //체험마을 주소
+
+      positions[i] = { content:    '<div class="overlaybox">' +
+    		  
+    		  '    <div class="first">' +
+    		    '    <ul>' +
+    		    '        <div class="triangle text">1</div>' +
+    		    '        <div class="movietitle text">🌾체험마을이름 : '+exprnVillageNm +'</div>' +
+    		    '     </ul>' +
+    		    '    </div>' +
+  		    '        <li class="up">' +
+  		    '            <span class="number">2</span>' +
+  		    '            <span class="title">🌾체험종류 :'+ exprnSe+'</span>' +
+  		    '        </li>' +
+  		    '        <li>' +
+  		    '            <span class="number">3</span>' +
+  		    '            <span class="title">🌾체험이름:'+exprnCn+'</span>' +
+  		    '        </li>' +
+  		    '        <li>' +
+  		    '            <span class="number">4</span>' +
+  		    '            <span class="title">🌾주소:'+rdnmadr+'</span>' +
+  		    '        </li>' +
+  		    '    </ul>' +
+  		    '</div>' 
+  	  	  , latlng: new kakao.maps.LatLng(Latitude, Longitude) }
+  }
+ 	
+    
+    let markers = [];
+    // 마커 이미지의 이미지 주소입니다
+    for (let i = 0; i < positions.length; i++) {
+      if (data[i].exprnSe == '농작물경작체험') {
+        var imageSrc = "/img/농촌.png";
+      } else if (data[i].exprnSe == '만들기체험') {
+        var imageSrc = "/img/만들기.png";
+      } else if (data[i].exprnSe == '전통문화체험') {
+        var imageSrc = "/img/전통문화.png";
+      } else if (data[i].exprnSe == '자연생태체험') {
+        var imageSrc = "/img/자연생태.png";
+      } else if (data[i].exprnSe == '건강') {
+        var imageSrc = "/img/건강.png";
+      } else if (data[i].exprnSe == '기타') {
+        var imageSrc = "/img/기타.png";
+      } else if (data[i].exprnSe == '레포츠') {
+        var imageSrc = "/img/레포츠.png";
+      } else if (data[i].exprnSe == '산촌생활체험') {
+        var imageSrc = "/img/산촌생활.png";
+      } else if (data[i].exprnSe == '어촌생활체험') {
+        var imageSrc = "/img/어촌생활.png";
+      } else if (data[i].exprnSe == '전통음식체험') {
+        var imageSrc = "/img/전통음식.png";
+      }
+
+      // 마커 이미지의 이미지 크기 입니다
+      var imageSize = new kakao.maps.Size(50, 50);
+
+      // 마커 이미지를 생성합니다    
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+      
+      // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커를 표시할 위치
+            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            image : markerImage // 마커 이미지 
+      });
+     
+      
+      
+      // 마커에 표시할 인포윈도우를 생성합니다 
+      var infowindow = new kakao.maps.InfoWindow({
+        content: positions[i].content // 인포윈도우에 표시할 내용
+      });       
+      // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+      // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+      // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+      kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+      kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));  
+      
+			kakao.maps.event.addListener(marker, 'click', function() {
+			      // 마커 위에 인포윈도우를 표시합니다
+			      location.href='/village/'+data[i].id;
+			});
+			markers.push(marker);
+    }
+
+    // 클러스터러에 마커들을 추가합니다
+    clusterer.addMarkers(markers);
+    
+    //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+    function makeOverListener(map, marker, infowindow) {
+      return function () {
+        infowindow.open(map, marker);
+      };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+    function makeOutListener(infowindow) {
+      return function () {
+        infowindow.close();
+      };
+    }
+    
+  </script>
+
+</body>

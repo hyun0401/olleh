@@ -1,0 +1,251 @@
+@keyframes filling {
+    from{
+      background-position: center 25%;
+    }
+    to {
+      background-position: center 50%;
+    }
+  }
+/* 첫상단 글 */
+.container-text {
+  margin: -2%;
+    text-align: center;
+    position: relative;
+background-image:  url(https://static.pexels.com/photos/4827/nature-forest-trees-fog.jpeg);
+-webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
+color:  #ffff;
+padding-top: 20px;
+font-size: 50px;
+font-family: 'monospace';
+animation: filling 3s ease forwards;
+}
+
+/* 사이드바 아이콘 */
+div[id="login__icon"] {
+  position: relative;
+  top: 23px;
+  left: 13px;
+  width: 150px;
+  margin: 0;
+}
+
+/* 사이드 메뉴바 */
+.sidebar{
+
+  list-style-type: none;
+  /* background-image:url(https://cdn.pixabay.com/photo/2016/03/17/06/49/renovation-1262389_960_720.png);
+  background-position: center;
+  background-size: 1000px 1000px; */
+  background-color:#519657;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  width: 10%;
+  top:7.9px;
+  padding: 0;
+  margin:-7px;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  
+
+}
+/* 메뉴 */
+li a{
+  text-decoration: none;
+  display: block;
+  color: #ffff;
+  padding: 23px 19px 18px 20px;
+  font-weight: bold;
+}
+
+ul[for="sidebar_text"] {
+  position: relative;
+  top: 46px;
+  padding-left: 0rem;
+  height: 40rem;
+
+}
+
+/* 별부분 */
+.star-rating {
+  border:none;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.star-rating input {
+  display:none;
+  }
+
+  .star-rating label {
+  color:#ccc;
+  cursor:pointer;
+  }
+
+  .star-rating :checked ~ label {
+  color:#f90;
+  }
+
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+  color:#fc0;
+  }
+  .container{
+   position: relative;
+   top:1rem;
+   left: 16rem;
+   width: 200rem;
+   padding-top:30px;
+
+}
+/* 제목 */
+label[for="subject"] {
+  position: relative;
+  top: -399px;
+  left: 176px;
+  height: 24px;
+  color: #009688;
+}
+input[id="a"] {
+  position: relative;
+  top: -402px;
+  left: 200px;
+  border-color: #009688;
+  border-radius: 10px;
+}
+/* 내용 */
+label[for="content"] {
+  position: relative;
+  top: -359px;
+  left: -36px;
+  color: #009688;
+}
+textarea[id="b"] {
+  position: relative;
+  top: 75px;
+  left: -20px;
+  border-color: #009688;
+  border-radius: 10px;
+}
+/* 별점 */
+span[for="star"] {
+  position: relative;
+  top: -399px;
+  left: -203px;
+  color: #009688;
+}
+div[id="star-rating"] {
+  position: relative;
+  top: -432px;
+  left: -505px;
+}
+
+
+/* 리뷰등록 */
+button[id="registration"] {
+  position: relative;
+  top: -100px;
+  left: 276px;
+
+  width: 28%;
+}
+#btn_group button{ 
+  border: 1px solid #009688; 
+  background-color: rgba(0,0,0,0); 
+  color: #009688; padding: 10px 100px;  
+  border-radius: 10px;
+  margin-left: -2rem;
+  margin-bottom: -6rem;
+  margin-top: 10rem;
+} 
+  
+#btn_group button:hover{ 
+  color:white; background-color: #009688; }
+
+
+
+
+
+
+  .container2 {
+    margin-left: 13%;
+    left: 128rem;
+    width: 60rem;
+    height: 98rem;
+}
+
+.image-upload {
+    
+    justify-content: center;
+}
+
+.button {
+    display: inline;
+    justify-content: start;
+}
+
+label[for="chooseFile"] {
+    cursor: pointer;
+    font-size: 14px;
+    color: #009688;
+}
+
+
+#chooseFile {
+    visibility: hidden;
+}
+
+.fileContainer {
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.fileInput {
+   
+  
+    border-bottom: solid 2px #009688;
+    width: 60%;
+    height: -30px;
+}
+
+#fileName {
+    margin-left: 105px;
+}
+
+.buttonContainer {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 483px;
+    margin-top: -3rem;
+    background-color: #009688;
+    color: white;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 0.8em;
+
+    cursor: pointer;
+}
+
+.image-show {
+    z-index: 2;
+    
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 10%;
+    height: 100%;
+}
+
+.img {
+    position: absolute;
+}

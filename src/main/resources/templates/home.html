@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css" />
+    <script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/koreamapfont/assets/css/korea-map-font-v1.css">
+
+    <title>농어촌 Olleh</title>
+    <style>
+    	html{
+    		height:950px;
+    	}
+    </style>
+    <body style="overflow-x: hidden"></body>
+
+</head>
+<body>
+  <div class="hz" id="section1">
+  
+   <!--써치-->  
+   <form th:action="@{/village/searchVill}" th:method="post" style="height:20px;">
+      <div class="search" >
+        <i class="fas fa-search"></i>
+        <input type="text" name="searchContent" placeholder="검색어를 입력하세요">
+       <button type="submit" style="background-color:inherit; transform:translate(310px,-40px); border-radius:10px;">검색</button>
+      </div>
+	</form>
+   <header>
+        
+        <div class="upm-menu" th:if="not ${session.loginMember} and not ${session.loginAdmin}">
+            <div class="login">
+               
+                <a href="" th:href="@{/login}"> <img src="/img/Greenhouse flat-30.png" alt style="width:1rem; margin-right: 1rem;">로그인</a>
+            </div>
+            <div class="join">
+                <a href="" th:href="@{/member/joinForm}">  <img src="/img/Greenhouse flat-13.png" alt style="width:1rem; margin-right: 1rem;">회원가입</a>
+            </div>
+        </div>
+           <div class="upm-menu" th:if="${session.loginMember}">
+          <div class="logout">
+              <a href="" th:href="@{/logout}">  <img src="/img/Greenhouse flat-34.png"  style="width:1rem; margin-right: 1rem;">로그아웃</a>
+          </div>
+          <div class="loginMember">
+              <a href="" th:href="@{/member/modify}" th:text="|내정보(${session.loginMember.memberId})|">  <img src="/img/Greenhouse flat-35.png" alt style="width:1rem; margin-right: 1rem;">내정보</a>
+          </div>
+          </div>
+          
+         <div class="upm-menu" th:if="${session.loginAdmin}">
+          <div class="logout">
+              <a href="" th:href="@{/logout}">  <img src="/img/Greenhouse flat-34.png" style="width:1rem; margin-right: 1rem;">로그아웃</a>
+          </div>
+          <div class="loginMember">
+              
+              <a href="" th:href="@{/manager/reservationList}" th:text="|관리자페이지(${session.loginAdmin.memberId})|">  <img src="/img/Greenhouse flat-35.png" alt style="width:1rem; margin-right: 1rem;">관리자페이지</a>
+          </div>
+          </div>
+        
+          </header>
+            <nav>
+          <div class="logo_w">
+              <img src="/img/logo_w.png">
+        </div>
+      </nav>
+  
+    <main>
+      <article>
+        <section>
+            <div class="main1">
+              <h1>농어촌 Olleh</h1>
+              <p>도심을 떠나 자연에서 보내는 시간 </p>
+              <button type="button" class="button_1" onclick="javascript:location.href='/map/1'">👨 🌾 여행지 검색</button>
+            </div>
+        </section>
+        <section>
+         
+        </section>
+      </article>
+    </main>
+    <footer>
+  
+    </footer>
+  </div>
+  
+  </body>
+</html>

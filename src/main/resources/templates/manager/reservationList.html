@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예약 현황</title>
+  <link rel="stylesheet" href="/css/reservationList.css"/>
+ 	<script src="/js/reservationList.js" defer></script>
+</head>
+<body>
+<script language='javascript'>
+
+     var cnt = new Array();
+     cnt[0] = new Array('전체');
+     cnt[1] = new Array('전체','강남구','강동구','강북구','강서구','관악구','광진구','구로구','금천구','고양시','과천시','계양구','남구','남동구','동구','부평구','서구','연수구','중구','강화군','옹진군','광명시','구리시','군포시','노원구','남양주시','도봉구','동대문구','동작구','동두천시','부천시','성남시','수원시','시흥시','안산시','안양시','오산시','의왕시','의정부시','평택시','하남시','가평군','광주시','김포시','안성시','양주군','양평군','여주군','연천군','용인시','이천군','파주시','포천시','화성시','마포구','서대문구','서초구','성동구','성북구','송파구','양천구','영등포구','용산구','은평구','종로구','중구','중랑구');
+     cnt[2] = new Array('전체','강릉시','동해시','삼척시','속초시','원주시','춘천시','태백시','고성군','양구군','양양군','영월군','인제군','정선군','철원군','평창군','홍천군','화천군','황성군');
+     cnt[3] = new Array('전체','대덕구','대전동구','대전서구','대전유성구','대전중구','제천시','청주시','충주시','괴산군','단양군','보은군','영동군','옥천군','음성군','진천군','청원군');
+     cnt[4] = new Array('전체','공주시','보령시','서산시','아산시','천안시','금산군','논산군','당진군','부여군','서천군','연기군','예산군','청양군','태안군','홍성군');
+     cnt[5] = new Array('전체','군산시','김제시','남원시','익산시','전주시','정읍시','고창군','무주군','부안군','순창군','완주군','임실군','장수군','진안군');
+     cnt[6] = new Array('전체','광양시','나주시','목포시','순천시','여수시','강진군','고흥군','곡성군','구례군','담양군','무안군','보성군','신안군','영광군','영암군','완도군','장성군','장흥군','진도군','함평군','해남군','화순군','광산구','광주남구','광주동구','광주북구','광주서구');
+     cnt[7] = new Array('전체','경산시','경주시','구미시','김천시','문경시','상주시','안동시','영주시','영천시','포항시','고령군','군위군','봉화군','성주군','영덕군','영양군','예천군','울릉군','울진군','의성군','청도군','청송군','칠곡군','남구','달서구','동구','북구','서구','수성구','중구','달성군');
+     cnt[8] = new Array('전체','울산남구','울산동구','울산북구','울산중구','울산울주군','거제시','김해시','마산시','밀양시','사천시','울산시','진주시','진해시','창원시','통영시','거창군','고성군','남해군','산청군','양산시','의령군','창녕군','하동군','함안군','함양군','합천군','강서구','금정구','남구','동구','동래구','부산진구','북구','사상구','사하구','서구','수영구','연제구','영도구','중구','해운대구','기장군');
+     cnt[9] = new Array('전체','서귀포시','제주시');
+     
+     function change(add) {
+     sel=document.form.signguNm
+       /* 옵션메뉴삭제 */
+       for (i=sel.length-1; i>=0; i--){
+         sel.options[i] = null
+         }
+       /* 옵션박스추가 */
+       for (i=0; i < cnt[add].length;i++){                     
+                         sel.options[i] = new Option(cnt[add][i], cnt[add][i]);
+         }         
+     }
+
+</script>
+  <header>
+       <div class="container-text">
+        <h2>관리자페이지</h2>
+    </div>
+    
+    
+    <div class="sidebar">
+        <div class="login__icon" id="login__icon"><img src="/img/logo_w.png" al style="top: 30px;
+            width: 158px;"></div>
+
+        <ul for="sidebar_text">
+            <svg class="login__icon name svg-icon"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="20" viewBox="-3 -3 20 20">
+                <path fill="#000000" d="M20 5v-1.5c0-0.276-0.224-0.5-0.5-0.5h-3.5c-0 0-0 0-0 0h-5c-0 0-0 0-0 0h-5c-0 0-0 0-0 0h-5.5c-0.276 0-0.5 0.224-0.5 0.5v6c0 0.276 0.224 0.5 0.5 0.5h1.5v6h-0.5c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5h4c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5h-0.5v-3h10v3h-0.5c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5h4c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5h-0.5v-6h1.5c0.276 0 0.5-0.224 0.5-0.5v-4.5c0-0 0-0 0-0zM19 4.793l-4.207 4.207h-3.586l5-5h2.793v0.793zM6.207 9l5-5h3.586l-5 5h-3.586zM1.207 9l5-5h3.586l-5 5h-3.586zM4.793 4l-3.793 3.793v-3.793h3.793zM3 16v-6h1v6h-1zM5 12v-2h10v2h-10zM17 16h-1v-6h1v6zM16.207 9l2.793-2.793v2.793h-2.793z"></path>
+            </svg>
+            <a href="" th:href="@{/manager/reservationList}" style="color: #fff">예약현황</a><br><br>
+
+            <svg class="login__icon name svg-icon"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="20" viewBox="-3 -3 20 20">
+                <path fill="#000000" d="M20 5v-1.5c0-0.276-0.224-0.5-0.5-0.5h-3.5c-0 0-0 0-0 0h-5c-0 0-0 0-0 0h-5c-0 0-0 0-0 0h-5.5c-0.276 0-0.5 0.224-0.5 0.5v6c0 0.276 0.224 0.5 0.5 0.5h1.5v6h-0.5c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5h4c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5h-0.5v-3h10v3h-0.5c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5h4c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5h-0.5v-6h1.5c0.276 0 0.5-0.224 0.5-0.5v-4.5c0-0 0-0 0-0zM19 4.793l-4.207 4.207h-3.586l5-5h2.793v0.793zM6.207 9l5-5h3.586l-5 5h-3.586zM1.207 9l5-5h3.586l-5 5h-3.586zM4.793 4l-3.793 3.793v-3.793h3.793zM3 16v-6h1v6h-1zM5 12v-2h10v2h-10zM17 16h-1v-6h1v6zM16.207 9l2.793-2.793v2.793h-2.793z"></path>
+            </svg>
+            <a href="" th:href="@{/manager/inquiries}" style="color: #fff">1:1문의사항</a><br><br>
+
+           
+        </ul>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+        <form name=form th:method="post" th:action="@{/manager/searchReservation}" >
+          <select name="ctprvnNm" id="ctprvnNm" onchange="change(this.selectedIndex);">
+          			  <option value='전체'>전체</option>
+                       <option value='경기'>경기도</option>
+                       <option value='강원'>강원도</option>
+                       <option value='충북'>충청북도</option>
+                       <option value='충남'>충청남도</option>
+                       <option value='전북'>전라북도</option>
+                       <option value='전남'>전라남도</option>
+                       <option value='경북'>경상북도</option>
+                       <option value='경남'>경상남도</option>
+                       <option value='제주'>제주도</option>
+          </select>
+         <select name="signguNm" id="signguNm">
+           <option value="전체">전체</option>
+           
+          </select>
+          <br>
+          <select name="exprnSe" id="exprnSe">
+            <option value="전체" selected>체험종류</option>
+            <option value="만들기체험">만들기체험</option>
+            <option value="전통문화체험">전통문화체험</option>
+            <option value="농작물경작체험">농작물경작체험</option>
+            <option value="자연생태체험">자연생태체험</option>
+            <option value="전통음식체험">전통음식체험</option>
+            <option value="산촌생활체험">산촌생활체험</option>
+            <option value="레포츠">레포츠</option>
+            <option value="건강">건강</option>
+            <option value="기타">기타</option>
+          </select>
+          
+        
+        <input type='submit' value='확인' id="toggleBtn"  />
+       </form>
+       </div> 
+       <div class="rv" id="reservtion" >
+       
+        
+     
+      <form th:method="post">
+
+        <div class="container2">     
+          
+				  <table border="1">
+					<tr>
+						<th>예약번호</th>
+						<th>예약날짜</th> 
+						<th>예약시간</th> 
+						<th>예약자이름</th>
+						<th>삭제</th>
+				    </tr>
+					
+					<tr th:each="reservationList : ${relist}">
+				       <td th:text="${reservationList.reservationNum}">예약</td>
+       				   <td th:text="${reservationList.reservationDate}">날짜</td>
+       				   <td th:text="${reservationList.checkin}">시간</td>
+					   <td th:text="${reservationList.reservationName}">예약자이름</td>
+               <td><button type="button" class="button_2" id="delBtn" th:data-reservationnum="${reservationList.reservationNum}">예약삭제</button></td>	
+				    </tr>
+				</table>        
+             
+               </div>
+      
+        
+      </form>
+   </div>  
+   
+  
+  </main>
+  <footer>
+
+  </footer>
+</body>
+</html>

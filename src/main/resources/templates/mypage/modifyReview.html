@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내리뷰</title>
+    <link rel="stylesheet" href="/css/review.css">
+    <script src="https://kit.fontawesome.com/9b9cba4432.js" crossorigin="anonymous"></script>
+    <script src="/js/modifyReview.js" defer></script>
+    <script src="/js/common/ajaxCall.js" defer></script>
+</head>
+<body>
+    <div class="container-text">
+        <h2>리뷰수정</h2>
+    </div>
+    
+    <label for="menuicon">
+    </label>
+    <div class="sidebar">
+        <div class="login__icon" id="login__icon"><img src="/img/logo_w.png" style="top: 30px;
+            width: 182px;"></div>
+
+        <ul for="sidebar_text">
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/modify}" style="color: #fff">회원정보수정</a><br><br>
+
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/reservation}" style="color: #fff">예약조회 및 취소</a><br><br>
+
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+           <a th:href="@{/member/bookmark}" style="color: #fff">관심리스트</a><br><br>
+
+           <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+            <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/inquiry}" style="color: #fff">1:1문의</a><br><br>
+            
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/delete}" style="color: #fff">내 리뷰</a><br><br>
+
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/delete}" style="color: #fff">회원탈퇴</a>
+        </ul>
+    </div>
+    
+    <form th:action="@{/updateReview}" th:method="post" enctype="multipart/form-data">
+   	<input type="text" name="reviewNum" style="visibility:hidden;" th:value="${reviewDTO.reviewNum}" />
+    <div class="container">    
+        <label for="subject">제목</label><input type="text" id="a" name="reviewTitle" th:value="${reviewDTO.reviewTitle}"/>
+        <label for="content">내용</label> <textarea id="b" cols="130" rows="30" name="reviewContent" th:text="${reviewDTO.reviewContent}"></textarea>
+          <span for="star">별점</span>
+        <div class="star-rating" id="star-rating">
+            <input type="radio" id="5-stars" name="score" value="5" />
+            <label for="5-stars" class="star">&#9733;</label>
+            <input type="radio" id="4-stars" name="score" value="4" />
+            <label for="4-stars" class="star">&#9733;</label>
+            <input type="radio" id="3-stars" name="score" value="3" />
+            <label for="3-stars" class="star">&#9733;</label>
+            <input type="radio" id="2-stars" name="score" value="2" />
+            <label for="2-stars" class="star">&#9733;</label>
+            <input type="radio" id="1-stars" name="score" value="1" />
+            <label for="1-star" class="star">&#9733;</label>
+        </div>
+    
+    
+    <div id="btn_group">
+    
+    <button type="submit" id="registration">수정완료</button>
+    </div>
+		
+
+    <div class="container2">
+        
+            <div class="image-upload" id="image-upload">
+    
+<!--                 <form method="post" enctype="multipart/form-data" style="height: 28px; width: 1298px; margin-left: 232px;"> -->
+                    <div class="button">
+                        <label for="chooseFile">
+                            🌲 사진첨부 🌲
+                        </label>
+                    </div>
+                    <input type="file" id="chooseFile" name="mfiles" accept="image/*" onchange="loadFile(this)"  multiple="multiple">
+                <!-- </form> -->
+    
+                <div class="fileContainer">
+                    <div class="fileInput">                        
+                        <p id="fileName"></p>
+                        <div th:each="imageFile : ${reviewDTO.imageFiles}">
+                         	<span th:text="${imageFile.uploadFileName}"></span>
+                         	<span class="delFile" th:data-storeFileName="${imageFile.storeFileName}"><i class="fas fa-backspace"></i></span>
+												</div>
+                    </div>
+                    <div class="buttonContainer">
+    										
+                        <div class="submitButton" id="submitButton">SUBMIT</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+		</form>
+            
+            <div class="image-show" id="image-show"></div>
+        </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

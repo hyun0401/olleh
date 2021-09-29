@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/loginForm.css">
+    <!-- <link rel="stylesheet" href="login.js"> -->
+    <title>로그인화면</title>
+</head>
+<body>
+  <div class="thumbnail-wrapper">
+      <img src="/img/1.png"  alt style=" width: 100vw; height: 100vh;">
+
+        <div class="main_box">
+
+          <div class="login">
+            <div class="login__icon"><img src="/img/logo_w.png" alt style="width: 100%;"></div>
+        
+        
+            <!-- 하단 action 부분 성공시 넘어갈 페이지 설정할것 -->
+           <form action="" th:method="post" th:object="${loginForm}">
+              
+            <div class="login__form">
+              <!-- 로그인 -->
+        
+              <div class="login__row">
+                <svg class="login__icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 15 15">
+                  <path fill="#000000" d="M9.5 11c-3.033 0-5.5-2.467-5.5-5.5s2.467-5.5 5.5-5.5 5.5 2.467 5.5 5.5-2.467 5.5-5.5 5.5zM9.5 1c-2.481 0-4.5 2.019-4.5 4.5s2.019 4.5 4.5 4.5c2.481 0 4.5-2.019 4.5-4.5s-2.019-4.5-4.5-4.5z"></path>
+                  <path fill="#000000" d="M17.5 20h-16c-0.827 0-1.5-0.673-1.5-1.5 0-0.068 0.014-1.685 1.225-3.3 0.705-0.94 1.67-1.687 2.869-2.219 1.464-0.651 3.283-0.981 5.406-0.981s3.942 0.33 5.406 0.981c1.199 0.533 2.164 1.279 2.869 2.219 1.211 1.615 1.225 3.232 1.225 3.3 0 0.827-0.673 1.5-1.5 1.5zM9.5 13c-3.487 0-6.060 0.953-7.441 2.756-1.035 1.351-1.058 2.732-1.059 2.746 0 0.274 0.224 0.498 0.5 0.498h16c0.276 0 0.5-0.224 0.5-0.5-0-0.012-0.023-1.393-1.059-2.744-1.382-1.803-3.955-2.756-7.441-2.756z"></path>
+                  </svg>
+                   <form action="" th:method="post" th:object="${loginForm}">
+                <input type="text" class="login__input name" th:field="*{memberId}" placeholder="아이디"/>
+              </div>
+              <!-- 비밀번호 -->
+              <div class="login__row">
+                <svg class="login__icon pass svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 15 15">
+                  <path fill="#000000" d="M14.5 8h-0.5v-1.5c0-2.481-2.019-4.5-4.5-4.5s-4.5 2.019-4.5 4.5v1.5h-0.5c-0.827 0-1.5 0.673-1.5 1.5v8c0 0.827 0.673 1.5 1.5 1.5h10c0.827 0 1.5-0.673 1.5-1.5v-8c0-0.827-0.673-1.5-1.5-1.5zM6 6.5c0-1.93 1.57-3.5 3.5-3.5s3.5 1.57 3.5 3.5v1.5h-7v-1.5zM15 17.5c0 0.276-0.224 0.5-0.5 0.5h-10c-0.276 0-0.5-0.224-0.5-0.5v-8c0-0.276 0.224-0.5 0.5-0.5h10c0.276 0 0.5 0.224 0.5 0.5v8z"></path>
+                  </svg>
+                <input type="password" class="login__input pass" th:field="*{memberPw}" placeholder="비밀번호"/>
+              </div>
+							</form>
+              
+              <button type="submit" class="login__submit">로그인</button>
+                          
+              <button type="button" class="btnSubmit_join" onclick="javascript:location.href='/member/joinForm'">회원가입</button>
+             
+              <button type="button" class="btnSubmit_find" onclick="javascript:location.href='/member/findForm'">ID/PW찾기</button>
+            
+
+            
+            </div>
+          </div>
+        </form>
+</body>
+</html>

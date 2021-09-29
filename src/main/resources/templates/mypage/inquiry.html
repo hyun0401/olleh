@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1 문의</title>
+    <link rel="stylesheet" href="/css/inquiry.css">
+	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/js/inquiry.js" defer></script>
+	 <script src="/js/common/ajaxCall.js" defer></script>
+</head>
+<body>
+    
+    <div class="container-text">
+        <h2>1:1 문의 </h2>
+    </div>
+    
+    <label for="menuicon">
+    </label>
+    <div class="sidebar">
+        <div class="login__icon" id="login__icon"><img src="/img/logo_w.png" al style="top: 30px;
+            width: 182px;"></div>
+
+        <ul for="sidebar_text">
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/modify}" style="color: #fff">회원정보수정</a><br><br>
+
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/reservation}" style="color: #fff">예약조회 및 취소</a><br><br>
+
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+           <a th:href="@{/member/bookmark}" style="color: #fff">관심리스트</a><br><br>
+
+           <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+            <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/inquiry}" style="color: #fff">1:1문의</a><br><br>
+            
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/reviewList}" style="color: #fff">내 리뷰</a><br><br>
+
+            <svg class="login_icon name svg-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#000000" d="M19.104 0.896c-0.562-0.562-1.309-0.871-2.104-0.871s-1.542 0.309-2.104 0.871l-12.75 12.75c-0.052 0.052-0.091 0.114-0.116 0.183l-2 5.5c-0.066 0.183-0.021 0.387 0.116 0.524 0.095 0.095 0.223 0.146 0.354 0.146 0.057 0 0.115-0.010 0.171-0.030l5.5-2c0.069-0.025 0.131-0.065 0.183-0.116l12.75-12.75c0.562-0.562 0.871-1.309 0.871-2.104s-0.309-1.542-0.871-2.104zM5.725 17.068l-4.389 1.596 1.596-4.389 11.068-11.068 2.793 2.793-11.068 11.068zM18.396 4.396l-0.896 0.896-2.793-2.793 0.896-0.896c0.373-0.373 0.869-0.578 1.396-0.578s1.023 0.205 1.396 0.578c0.373 0.373 0.578 0.869 0.578 1.396s-0.205 1.023-0.578 1.396z"></path>
+            </svg>
+            <a th:href="@{/member/delete}" style="color: #fff">회원탈퇴</a>
+        </ul>
+    </div>
+    </div>
+    <div class="container">    
+        <div class="subject">
+        <label for="subject">나의문의</label></div>   
+  
+    
+      
+            <table border="1">
+               
+                <tr>
+                    <th for="no">문의번호</th>              
+                    <th for="category1">문의종류</th>
+                    <th for="subject1">문의제목</th>
+                    <th for="content1">내용</th>  
+                    <th>수정&삭제</th>        
+               </tr>
+                
+        
+           
+                <tr th:each="inquiry : ${iqList}">
+                    <td for="no-1"><a th:text="${inquiry?.inquiryNum}" style="color: black">pro-01</a></td>
+                    <td for="category1-1"><a th:text="${inquiry?.inquiryType}" style="color: black">예약문의</a></td>
+                    <td for="subject1-1"><a  th:text="${inquiry?.inquiryTitle}" style="color: black">안녕하세요</a></td>
+                    <td for="content1-1"><a th:text="${inquiry?.inquiryContent}" style="color: black">안녕하세요</a></td>
+                	<td>
+                        <a href="#section3" class="change"  style="padding: 15px ; color:black;" th:data-inquirynum="${inquiry.inquiryNum}">자세히</a>
+                    </td>
+                </tr>
+                 </table>
+          
+                
+                    <div id="btn_group">
+                <button type="submit">
+                    <a href="#section2" class="change-price">문의작성</a></button>
+                      </div>   
+                  
+          </div>
+        <div class="container">    
+        <div class="subject">
+        <label for="subject">문의답변</label></div>   
+  
+    
+      
+            <table border="1">
+               
+                <tr>
+                    <th for="no">답변번호</th>              
+                    <th for="category1">문의번호</th>
+                    <th for="subject1">답변제목</th>
+                    <th for="content1">내용</th>  
+                    <th>자세히</th>        
+               </tr>
+                
+        
+           
+                <tr th:each="comment : ${cmList}">
+                    <td for="no-1"><a th:text="${comment?.inquiryCommentNum}" style="color: black">pro-01</a></td>
+                    <td for="category1-1"><a th:text="${comment?.inquiryNum}" style="color: black">예약문의</a></td>
+                    <td for="subject1-1"><a  th:text="${comment?.inquiryCommentTitle}" style="color: black">안녕하세요</a></td>
+                    <td for="content1-1"><a th:text="${comment?.inquiryCommentContent}" style="color: black">안녕하세요</a></td>
+                	<td>
+                        <a href="#" id="detailBtn" style="padding: 15px ; color:black;" th:data-commentnum="${comment?.inquiryCommentNum}" >자세히</a>
+                    </td>
+                </tr>
+                 </table>
+          </div>
+    
+   <!----------------------------section2------------------>
+    <div class="hz" id="section2">
+        <div class="none-sq-price"  style="display:none">
+        
+        <header>          
+         <h3>1:1 문의 작성</h3>
+         <hr style="border: solid 8px #bf5f82;">
+        </header>
+       
+      <form th:action="@{/member/editInquiry}" th:method="post">
+
+        <div class="container2">     
+          
+                <label for="inquiryType" class="category2">문의 종류    </label>             
+                    <select name="inquiryType" class="category2">
+                        <option  selected="selected">문의 종류</option>
+                        <option value="1">체험관련</option>
+                        <option value="2">예약관련</option>
+                        <option value="3">회원정보관련</option>
+                    </select>                  
+                <label for="subject2">제목</label>
+                    <input for="subject2" type="text" name="inquiryTitle" style="color: black"/>
+                                       
+                <div class="container5">
+                    <label for="content3">내용</label>
+                        <textarea for="content3" name="inquiryContent" style="color: black" ></textarea>
+                </div>
+
+                <div id="btn2_group">
+               
+                <button type="submit" class="button_2">등록</button>	
+                </div>
+              
+      
+        </div>  
+      </form>
+   </div>
+           </div> 
+          
+    
+     <!----------------------------section3------------------>
+      
+     <div class="hz" id="section3">
+        <div class="sq-price"  style="display:none">
+         
+         <header>          
+          <h3>1:1 문의 수정&삭제</h3>
+          <hr style="border: solid 8px #bf5f82;">
+         </header>
+        
+    
+ 		<div id="inquiryDataList">
+        
+   </div>
+    
+             
+           
+     </div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아이디/비밀번호 찾기</title>
+  <link rel="stylesheet" href="/css/findIdPw.css">
+</head>
+<body>
+ <div class="container-text">
+        <h2>아이디/비밀번호 찾기</h2>
+       
+    </div>
+    
+  <div class="idpw">
+  <span>아이디 : </span><input type="text" id="memberId" name="memberId" th:value="${MemberDTO.getMemberId}" readonly="readonly" />
+  <br />
+  <span> 비밀번호 : </span><input type="text" id="memberPw" name="memberPw" th:value="${MemberDTO.getMemberPw}" readonly="readonly" />
+  <br />
+  
+  </div>
+  
+  <button type="button" class="loginBtn" onclick="javascript:location.href='/login'">로그인</button> 
+</body>
+</html>

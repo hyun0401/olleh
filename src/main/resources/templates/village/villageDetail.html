@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=350a9e807da90462b55ca65a01a3af9d&libraries=services"></script>
+   
+  <script src="/js/villageDetailS2.js" defer></script>
+</head>
+<style>
+
+
+
+ 
+body{
+margin:0;
+width:100%;
+height:100%;
+background-repeat: no-repeat;
+text-align:center; line-height : 100px;
+z-index:1;
+}
+
+
+.backimage{
+opacity:0.2;
+position:absolute;
+width:100%;
+height:2000px;
+z-index:-1;
+}
+
+.backimage2{
+width:100%;
+height:100%;
+}
+.villimg{
+  display:flex;
+  width:400px;
+  height:400px;
+  margin-top: 30px;
+  outline: 5px solid grey;
+  
+}
+.header{
+  display:flex;
+  justify-content: space-evenly;
+}
+.table2{
+display:flex;
+display: -webkit-box;
+display: -ms-flexbox;
+overflow-x: auto;
+overflow-y: hidden;
+}
+.thead{display:flex;}
+.tbody
+{display:flex;}
+
+.td{
+  display:block;
+  height:50px;
+}
+.score{
+  display: inline;
+}
+.editButton{
+  display: block;
+}
+.mainTitle{
+  margin-top: 200px;
+  font-size: 3rem;
+  font-weight: 900;
+}
+.main{
+  display: flex;
+  justify-content: center;
+  
+}
+.table{
+  width:1200px;
+  text-align: center;
+}
+.mainThead{
+  background-color: slategray;
+  color:white;
+  height: 50px;
+  line-height: 50px;
+}
+.mainTbody{
+  height:70px;
+  line-height: 70px;
+}
+button{
+  font-weight:500;
+  border: 1px solid slategray; 
+   background-color: rgba(0,0,0,0); 
+   color: slategray; padding: 10px 10px;  
+   border-radius: 10px;
+}
+.vilInput{
+display:none;}
+
+
+</style>
+<body>
+  <div class="header">
+
+  <div class="backimage"><img class="backimage2" src="https://cdn.pixabay.com/photo/2021/08/29/08/49/petit-minou-lighthouse-6582717_960_720.jpg" alt="" /></div>
+
+  <img class="villimg" src="https://cdn.pixabay.com/photo/2017/10/11/02/13/hanok-2839691_960_720.jpg" >
+
+  <table class="table2">
+    <thead class="thead">
+  <tr>
+    <th class="td">체험마을이름</th>
+    <th class="td">주소</th>
+    <th class="td">전화번호</th>
+    <th class="td">체험프로그램</th>
+    <th class="td">소개</th>
+    <th class="td">예약</th>
+  </tr>
+</thead>
+<tbody class="tbody">
+<form th:action="@{/ReservatoinVill}" th:method="post">
+        <input type="text" name="exprnCn" th:value="${village.exprnCn}" class="vilInput"/>
+        <input type="text" name="exprnVillageNm" th:value="${village.exprnVillageNm}" class="vilInput"/>
+        <input type="text" name="id" th:value="${village.id}" class="vilInput"/>
+  <tr>
+    <td class="td" name="exprnVillageNm" th:text="${village?.exprnVillageNm}">보라매마을</td>
+    <td class="td" name="rdnmadr" th:text="${village?.rdnmadr}">만들기체험</td>
+    <td class="td" name="phoneNumber" th:text="${village?.phoneNumber}">체험이름</td>
+    <td class="td"  name="exprnCn" th:text="${village?.exprnCn}">울산광역시</td>
+    <td class="td">어서오세요 환영합니다</td>
+    <td class="td"><button type="submit" class="reserBtn">예약하기</button></td>
+  </tr>
+</tbody>
+</table>
+</form>
+<div class="star">별점 :
+<p class="score" th:text="${villageScore}"> 2.7 </p>
+<button type="button" class="editButton" th:data-bookmark="${village.id}">관심리스트 등록</button>
+
+</div>
+</div>
+
+<p class="mainTitle">리뷰목록</p>
+<div class="main">
+<table class="table">
+  <thead class="mainThead">
+    <tr class="td2">
+      <th class="td2">리뷰번호</th>
+      <th class="td2">리뷰제목</th>
+      <th class="td2">작성일자</th>
+      <th class="td2">작성자</th>
+      <th class="td2">작성자</th>
+    </tr>
+  </thead>
+  <tbody class="mainTbody">
+    <tr class="td2" th:each="reviewList : ${reviewList}">
+      <td class="td2" th:text="${reviewList?.reviewNum}">5</td>
+      <td class="td2" th:text="${reviewList?.reviewTitle}"></td>
+      <td class="td2" th:text="${reviewList?.RCDATE}"> <a href=""> 너무즐겁네요</a></td>
+      <td class="td2" th:text="${reviewList?.memberId}">2021-08-21</td>
+      <td class="td2"><button class="Title" th:data-reviewnum="${reviewList.reviewNum}">리뷰상세보기</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+</div>
+<p class="mainTitle">주변 관광지</p>
+<div class="footer">
+  <div id="map"  style="width:100%;height:600px;"></div>
+</div>
+
+
+
+
+<script th:inline="javascript">
+let Latitude = [[${village.villageLatitude}]]
+let Longitude = [[${village.villageLongitude}]]
+  // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(Latitude, Longitude), // 지도의 중심좌표
+        level: 4 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(map); 
+
+// 카테고리로 은행을 검색합니다
+ps.categorySearch('AT4', placesSearchCB, {useMapBounds:true}); 
+
+// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+        for (var i=0; i<data.length; i++) {
+            displayMarker(data[i]);    
+        }       
+    }
+}
+
+// 지도에 마커를 표시하는 함수입니다
+function displayMarker(place) {
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x) 
+    });
+  
+  
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.open(map, marker);
+    });
+}
+
+</script>
+</body>
+</html>

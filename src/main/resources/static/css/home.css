@@ -1,0 +1,105 @@
+/* 폰트 */
+@font-face {
+    src:url("../fonts/Cafe24Ssurround.ttf");
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  /* 배경 */
+  #section1 {height: 960px;}
+
+  html { 
+    scroll-behavior: smooth;
+    background: url(/img/main.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.5 
+  }
+
+/* 로고   */
+.logo_w{
+    position: relative;
+    animation-name: logo_w;
+    top: 70px;
+    left:-62px;
+    transform: translateX(767px);
+    /*animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;*/ 
+}
+
+/* 헤더 */
+.upm-menu a:hover{color: #666;}
+.upm-menu .login{text-align: right; margin-right: 13%;}
+.upm-menu .join{text-align: right; margin-right: 2%; margin-top: -2.2%;}
+.upm-menu .logout{text-align: right; margin-right: 13%;}
+.upm-menu .loginMember{text-align: right; margin-right: 2%; margin-top: -2.2%;}
+.upm-menu a{color: #fff; padding: 10px; display: inline-block; font-family:'Cafe24Ssurround';}
+.upm-menu a{text-decoration: none;}
+
+/* 하단글 */
+.main1{
+    position: relative;
+    right: -45rem;
+    height: 14rem;
+    bottom: -3rem;
+    color: #fff;
+    font-size: 30px;
+    font-family:'Cafe24Ssurround';
+}
+h1{
+    position: relative;
+    margin-left:8rem;
+}
+
+.button_1{
+    position: relative;
+    margin-left:11rem;
+    border: 2px solid #fff; 
+    background-color: rgba(0,0,0,0); 
+    color: #fff; padding: 10px 100px;  
+    border-radius: 10px;
+    margin-left: 4rem;
+    margin-bottom: -6rem;
+    margin-top: 0rem;
+    font-family: 'Cafe24Ssurround';
+    font-size: 1rem;
+    
+}
+.button_1 a{
+    text-decoration: none;
+    color: #fff;
+}
+
+/* 검색창 */
+.search {
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+    top:2rem;
+    transform:translateX(-40px);
+}
+input {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #bbb;
+    margin: 10px 0;
+    padding: 10px 54px;
+    text-align: center;
+    
+}
+.fa-search {
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    margin: 0;
+}
+.fa-keyboard {
+    position: absolute;
+    right: -5rem;
+    top: 20px;
+}

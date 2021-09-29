@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+   <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=350a9e807da90462b55ca65a01a3af9d&libraries=clusterer" ></script>
+    <script src="/js/searchVill.js" defer></script>
+  <style>
+  
+  table{
+height:200px;
+}
+  
+    tr{
+      text-align: center;
+      height:50px;
+    }
+    th,td{
+      padding-left: 100px;
+      height:50px;
+    }
+	.searchMenu{
+	overflow:scroll; width:1500px; height:300px; outline:1px solid black;
+transform:translate(220px,10px);
+
+	}
+	
+	#map{
+	transform:translate(470px,100px);
+	}
+	marker{
+		background-color : inherit;
+	}
+
+
+.overlaybox div, ul {overflow:hidden;margin:0;padding:0;}
+.overlaybox li {list-style: none;}
+.overlaybox .boxtitle {color:#fff;font-size:16px;font-weight:bold;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png') no-repeat right 120px center;margin-bottom:8px;}
+.overlaybox .first {position:relative;width:247px;height:136px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumb.png') no-repeat;margin-bottom:8px;}
+.first .text {color:#fff;font-weight:bold;}
+.first .triangle {position:absolute;width:48px;height:48px;top:0;left:0;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/triangle.png') no-repeat; padding:6px;font-size:18px;}
+.first .movietitle {position:absolute;width:100%;bottom:0;background:rgba(0,0,0,0.4);padding:7px 15px;font-size:14px;}
+.overlaybox ul {width:247px;}
+.overlaybox li {position:relative;margin-bottom:2px;background:#2b2d36;padding:5px 10px;color:#aaabaf;line-height: 1;}
+.overlaybox li span {display:inline-block;}
+.overlaybox li .number {font-size:16px;font-weight:bold;}
+.overlaybox li .title {font-size:13px;}
+.overlaybox ul .arrow {position:absolute;margin-top:8px;right:25px;width:5px;height:3px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png') no-repeat;} 
+.overlaybox li .up {background-position:0 -40px;}
+.overlaybox li .down {background-position:0 -60px;}
+.overlaybox li .count {position:absolute;margin-top:5px;right:15px;font-size:10px;}
+.overlaybox li:hover {color:#fff;background:#d24545;}
+.overlaybox li:hover .up {background-position:0 0px;}
+.overlaybox li:hover .down {background-position:0 -20px;}   
+
+
+.villageTitle:hover{
+cursor: pointer;
+}
+
+.headTitle{
+display:flex;
+justify-content:center;
+}
+
+body{
+margin:0;
+width:100%;
+height:100%;
+background-repeat: no-repeat;
+text-align:center; line-height : 100px;
+z-index:1;
+
+}
+
+.searchContent{
+transform:translateY(25px);
+}
+.backimage{
+opacity:0.2;
+position:absolute;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+img{
+width:100%;
+height:100%;
+}
+
+  </style>
+</head>
+<body>
+<div class="backimage"><img src="https://cdn.pixabay.com/photo/2018/07/25/18/02/far-view-3561957_960_720.jpg" alt="" /></div>
+<div class="headTitle">
+<h2 class="searchContent" th:text="${searchContent}"></h2><p >에 대한 검색결과입니다.</p>
+</div>
+<div class="searchMenu">
+  <table class="table table-striped table-hover">
+    <tr height="50">
+      <th>마을이름</th>
+      <th>체험프로그램명</th>
+      <th>주소</th>
+    </tr>
+
+    <tr th:each="village : ${sList}">
+      <td class="villageTitle" th:text="${village.exprnVillageNm}" th:data-villageid="${village.id}">1</td>
+      <td th:text="${village.exprnCn}">만들기체험</td>
+      <td th:text="${village.rdnmadr}">마징가Z만들기</td>
+    </tr>
+  </table>
+  </div>
+  
+  
+  <div id="map" style="width: 950px; height: 400px;" ></div>
+  
+  
+  
+  <script th:inline="javascript">
+  // 마커를 표시할 위치와 title 객체 배열입니다 
+  const data = [[${ sList }]];  //marker정보
+  
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+  mapOption = { 
+      center: new kakao.maps.LatLng(36.4143368776063, 127.65744289696508), // 지도의 중심좌표
+      level: 13 // 지도의 확대 레벨
+  };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+let positions = [];
+for (i = 0; i < data.length; i++) {
+  let Latitude = data[i].villageLatitude;
+  let Longitude = data[i].villageLongitude;
+  let exprnVillageNm = data[i].exprnVillageNm; //체험마을이름
+  let exprnSe = data[i].exprnSe; //체험프로그램 종류
+  let exprnCn = data[i].exprnCn; //체험프로그램 이름
+  let rdnmadr = data[i].rdnmadr; //체험마을 주소
+
+  positions[i] = { content:    '<div class="overlaybox">' +
+		    '    <ul>' +
+		    '        <li class="up">' +
+		    '            <span class="number">체험마을이름</span>' +
+		    '            <span class="title">'+exprnVillageNm+'</span>' +
+		    '        </li>' +
+		    '        <li>' +
+		    '            <span class="number">체험프로그램</span>' +
+		    '            <span class="title">'+exprnSe+'</span>' +
+		    '        </li>' +
+		    '        <li>' +
+		    '            <span class="number">체험이름</span>' +
+		    '            <span class="title">'+exprnCn+'</span>' +
+		    '        </li>' +
+		    '        <li>' +
+		    '            <span class="number">주소</span>' +
+		    '            <span class="title">'+rdnmadr+'</span>' +
+		    '        </li>' +
+		    '    </ul>' +
+		    '</div>'
+	  	  , latlng: new kakao.maps.LatLng(Latitude, Longitude) }
+}
+
+
+
+for (var i = 0; i < positions.length; i ++) {
+  // 마커를 생성합니다
+  var marker = new kakao.maps.Marker({
+      map: map, // 마커를 표시할 지도
+      position: positions[i].latlng // 마커의 위치
+  });
+
+  // 마커에 표시할 인포윈도우를 생성합니다 
+  var infowindow = new kakao.maps.InfoWindow({
+      content: positions[i].content // 인포윈도우에 표시할 내용
+  });
+
+  // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+  // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+  // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+  kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+  kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+  
+  kakao.maps.event.addListener(marker, 'click', function() {
+	  for(let h=0; h<positions.length; h++){
+     location.href='/village/'+ data[h].id;
+	  }
+  });
+
+}
+
+//인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+  return function() {
+      infowindow.open(map, marker);
+  };
+}
+
+//인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+  return function() {
+      infowindow.close();
+  };
+}
+  
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

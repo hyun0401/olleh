@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    font-size: 62.5%;
+    height: 100%;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    html, body {
+      font-size: 50%;
+    }
+  }
+   /* 글쓰는게 공간이상으로 가도 다보임 */
+  svg {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    overflow: visible;
+  }
+   /* 마우스 포인터 */
+  .svg-icon {
+    cursor: pointer;
+  }
+  .svg-icon path {
+    stroke: rgba(255, 255, 255, 0.9);
+    fill: none;
+    stroke-width: 1;
+  }
+  
+  input, button {
+    outline: none;
+    border: none;
+  }
+    /* 배경 */
+  .thumbnail-wrappper { 
+    width: 25%; } 
+    img { max-width: 100%; height: auto;
+    animation: fadein 3s;
+    -webkit-animation: fadein 3s;
+    }
+  @keyframes fadein {
+      from {
+          opacity: 0;
+      }
+      to {
+          opacity: 1;
+      }
+  }
+  @-webkit-keyframes fadein { 
+      from {
+          opacity: 0;
+      }
+      to {
+          opacity: 1;
+      }
+  }
+
+  /* 기입할 전체 박스 */
+  .main_box {
+    position: absolute;
+    top: 24%;
+    left: 45%;
+    margin-left: -15rem;
+    margin-top: -16.5rem;
+    width: 48rem;
+    height: 82rem;
+    overflow: visible;
+  }
+
+  
+  .login {
+    position: relative;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+    transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+    transform: scale(1);
+  }
+  
+
+
+  .login.inactive {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+
+  .login__form {
+    position: relative;
+    top: -2%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    padding: 0.5rem 2.5rem;
+    text-align: center;
+  }
+  .login__row {
+    height: 9rem;
+    padding-top: 4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .login__icon {
+    margin-bottom: -0.4rem;
+    margin-right: 0.5rem;
+    font-weight: 600;
+  }
+  .login__icon.name path {
+    stroke-dasharray: 73.5019607544;
+    stroke-dashoffset: 73.5019607544;
+    animation: animatePath 2s 0.5s forwards;
+  }
+  .login__icon.pass path {
+    stroke-dasharray: 92.106628418;
+    stroke-dashoffset: 92.106628418;
+    animation: animatePath 2s 0.5s forwards;
+  }
+  .login__input {
+    display: inline-block;
+    width: 40rem;
+    height: 100%;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+    background: transparent;
+    color: #FDFCFD;
+  }
+  /* 로그인버튼 */
+  .btnSubmit_find {
+    position: relative;
+    top:-3%;
+    width: 100%;
+    height: 4rem;
+    margin: 5rem 0 2.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    background:darkseagreen;
+    font-size: 1.5rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+  }
+
+
+  /* .login__submit:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1.5rem;
+    margin-top: -1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border: 2px dotted #fff;
+    border-radius: 50%;
+    border-left: none;
+    border-bottom: none;
+    transition: opacity 0.1s 0.4s;
+    opacity: 0;
+  }
+  .login__submit.processing {
+    width: 4rem;
+    font-size: 0;
+  }
+  .login__submit.processing:after {
+    opacity: 1;
+    animation: rotate 0.5s 0.4s infinite linear;
+  }
+  .login__submit.success {
+    transition: transform 0.3s 0.1s ease-out, opacity 0.1s 0.3s, background-color 0.1s 0.3s;
+    transform: scale(30);
+    opacity: 0.9;
+  }
+  .login__submit.success:after {
+    transition: opacity 0.1s 0s;
+    opacity: 0;
+    animation: none;
+  } */
+  .login__signup {
+    font-size: 1.5rem;
+    color: #ABA8AE;
+  }
+  .login__signup a {
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  
+  /* .ripple {
+    position: absolute;
+    width: 15rem;
+    height: 15rem;
+    margin-left: -7.5rem;
+    margin-top: -7.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    transform: scale(0);
+    animation: animRipple 0.4s;
+    border-radius: 50%;
+  }
+   */
+  @keyframes animRipple {
+    to {
+      transform: scale(3.5);
+      opacity: 0;
+    }
+  }
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes animatePath {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }

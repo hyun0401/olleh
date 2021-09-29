@@ -1,0 +1,70 @@
+/* 폰트 */
+@font-face {
+    src:url("../fonts/Cafe24Ssurround.ttf");
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  
+  @keyframes filling {
+      from{
+        background-position: center 25%;
+      }
+      to {
+        background-position: center 50%;
+      }
+    }
+  /* 첫상단 글 */
+  .container-text {
+    margin-left: 7%;
+      text-align: center;
+      position: relative;
+  background-image:  url(https://static.pexels.com/photos/4827/nature-forest-trees-fog.jpeg);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  color:  #ffff;
+  padding-top: 20px;
+  font-size: 50px;
+  font-family: 'Cafe24Ssurround';
+  animation: filling 3s ease forwards;
+  }
+  
+ 
+   .idpw{
+   	text-decoration: none;
+   	text-align:center;
+  
+  	font-size:50px;
+   	padding-top: 5rem;
+    padding-left: 35rem;
+   	font-weight:bold;
+   	color: #519657;
+   	
+   }
+   #memberId{
+   border:0 solid black;
+   font-size:50px;
+   color:#79bd82;
+   
+   }
+   #memberPw{
+   border:0 solid black;
+   font-size:50px;
+   color:#79bd82;
+   
+   }
+   
+   .loginBtn {
+    margin-top:2rem;
+    margin-left:58rem;
+    color: rgba(255, 255, 255, 0.8);
+    background:darkseagreen;
+    font-size: 1.5rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+  }
+  
